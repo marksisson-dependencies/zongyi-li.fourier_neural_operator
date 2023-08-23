@@ -13,10 +13,13 @@ API reference
 Models
 ======
 
-In `neuralop`, we provide a general Fourier Neural Operator (TFNO) that supports most usecases.
+In :mod:`neuralop.models`, we provide neural operator models you can directly use on your applications.
+
 
 FNO
 ---
+
+We provide a general Fourier Neural Operator (TFNO) that supports most usecases.
 
 We have a generic interface that works for any dimension, which is inferred based on `n_modes`
 (a tuple with the number of modes to keep in the Fourier domain for each dimension.)
@@ -58,13 +61,45 @@ Dimension-specific classes:
     TFNO2d
     TFNO3d
 
+Spherical Fourier Neural Operators (SFNO)
+-----------------------------------------
+
+.. autosummary::
+    :toctree: generated
+    :template: class.rst
+
+    SFNO
+
+
+U-shaped Neural Operators (U-NO)
+--------------------------------
+
+.. autosummary::
+    :toctree: generated
+    :template: class.rst
+
+    UNO
 
 Layers
 ======
 
-In addition to the full architectures, we also provide building blocks:
+.. automodule:: neuralop.layers
+    :no-members:
+    :no-inherited-members:
 
-.. automodule:: neuralop.models.fno_block
+.. _neuralop_layers_ref:
+
+
+In addition to the full architectures, we also provide 
+in :mod:`neuralop.layers` building blocks,
+in the form of PyTorch layers, that you can use to build your own models:
+
+Neural operator Layers
+++++++++++++++++++++++
+
+**Spectral convolutions** (in Fourier domain):
+
+.. automodule:: neuralop.layers.spectral_convolution
     :no-members:
     :no-inherited-members:
 
@@ -72,15 +107,32 @@ In addition to the full architectures, we also provide building blocks:
     :toctree: generated
     :template: class.rst
 
-    FactorizedSpectralConv
+    SpectralConv
 
-    FactorizedSpectralConv1d
-    FactorizedSpectralConv2d
-    FactorizedSpectralConv3d
+    SpectralConv1d
+    SpectralConv2d
+    SpectralConv3d
+
+
+**Spherical convolutions**: (using Spherical Harmonics)
+
+.. automodule:: neuralop.layers.spherical_convolution
+    :no-members:
+    :no-inherited-members:
+
+.. autosummary::
+    :toctree: generated
+    :template: class.rst
+
+    SphericalConv
+
+
+Other resolution invariant operations
++++++++++++++++++++++++++++++++++++++
 
 Automatically apply resolution dependent domain padding: 
 
-.. automodule:: neuralop.models.padding
+.. automodule:: neuralop.layers.padding
     :no-members:
     :no-inherited-members:
 
@@ -90,7 +142,7 @@ Automatically apply resolution dependent domain padding:
 
     DomainPadding
 
-.. automodule:: neuralop.models.skip_connections
+.. automodule:: neuralop.layers.skip_connections
     :no-members:
     :no-inherited-members:
 
@@ -121,6 +173,7 @@ It has the advantage of doing some checks on the parameters it receives.
     :template: function.rst
 
     get_model
+    available_models
 
 Datasets
 ========
